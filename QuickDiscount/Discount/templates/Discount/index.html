@@ -1,0 +1,20 @@
+{% extends 'Discount/base.html' %}
+
+{% block stocks %}
+
+    {% for stock in stocks %}
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3>{{ stock.exposition }}</h3>
+            <br>
+            <h5>{{ stock.description }}</h5>
+            <br>
+            <h6><i>{{ stock.terms }}</i></h6>
+            <hr>
+        </div>
+    </div>
+
+    {% endfor %}
+
+{% endblock %}

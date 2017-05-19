@@ -27,6 +27,9 @@ class Customer(models.Model):
     password = models.CharField(max_length=255)
     categories = MultiSelectField(choices=CATEGORIES_SELECT)
 
+    def __str__(self):
+        return self.email
+
 
 class CustomerForm(ModelForm):
     class Meta():
@@ -43,6 +46,9 @@ class Seller(models.Model):
     phone = models.CharField(max_length=20)
     email = models.EmailField(max_length=255)
 
+    def __str__(self):
+        return self.email
+
 
 class SellerForm(ModelForm):
     class Meta():
@@ -56,12 +62,16 @@ class Shop(models.Model):
     name = models.CharField(max_length=255)
     image = models.ImageField()
     category = models.CharField(max_length=20, choices=CATEGORIES_SELECT, default='Не выбрано')
+    seller_id = models.IntegerField()
+
+    def __str__(self):
+        return self.name
 
 
 class ShopForm(ModelForm):
     class Meta():
         model = Shop
-        fields = '__all__'
+        exclude = ['seller_id']
 
 
 class Stock(models.Model):
@@ -71,11 +81,15 @@ class Stock(models.Model):
     terms = models.CharField(max_length=255)
     description = models.TextField()
     date = models.DateTimeField(auto_now=True)
+    shop_id = models.IntegerField()
+
+    def __str__(self):
+        return self.exposition
 
 class StockForm(ModelForm):
     class Meta():
         model = Stock
-        fields = '__all__'
+        exclude = ['shop_id']
 
 
 class Subscription(models.Model):
