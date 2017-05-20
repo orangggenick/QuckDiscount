@@ -1,10 +1,11 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.forms import ModelForm
 from multiselectfield import MultiSelectField
 
 SEX_SELECT = (
-    ('Мужской','Мужской'),
-    ('Женский','Женский'),
+    ('man','Мужской'),
+    ('women','Женский'),
 )
 
 CATEGORIES_SELECT = (
@@ -15,45 +16,33 @@ CATEGORIES_SELECT = (
     ('services', 'Услуги')
 )
 
+STATUS_SELECT = (
+    ('сustomer','Покупатель'),
+    ('stuff','Персонал'),
+)
 
-class Customer(models.Model):
+
+class DiscountUser(models.Model):
     class Meta():
-        db_table = 'Customer'
-    name = models.CharField(max_length=255)
-    surname = models.CharField(max_length=255)
-    sex = models.CharField(max_length=10, choices=SEX_SELECT, default='Не выбрано')
-    phone = models.CharField(max_length=20)
-    email = models.EmailField(max_length=255)
-    password = models.CharField(max_length=255)
-    categories = MultiSelectField(choices=CATEGORIES_SELECT)
-
-    def __str__(self):
-        return self.email
-
-
-class CustomerForm(ModelForm):
-    class Meta():
-        model = Customer
-        fields = '__all__'
-
-
-class Seller(models.Model):
-    class Meta():
-        db_table = 'Seller'
+        db_table = 'DiscountUser'
+    user = models.OneToOneField(User)
     name = models.CharField(max_length=255)
     surname = models.CharField(max_length=255)
     patronymic = models.CharField(max_length=255)
+    sex = models.CharField(max_length=10, choices=SEX_SELECT, default='Не выбрано')
     phone = models.CharField(max_length=20)
     email = models.EmailField(max_length=255)
+    categories = MultiSelectField(choices=CATEGORIES_SELECT)
+    status = models.CharField(max_length=10, choices=STATUS_SELECT, default='Не выбрано')
 
     def __str__(self):
-        return self.email
+        return self.user.username
 
 
-class SellerForm(ModelForm):
+class DiscountUserForm(ModelForm):
     class Meta():
-        model = Seller
-        fields = '__all__'
+        model = DiscountUser
+        exclude = ['user']
 
 
 class Shop(models.Model):

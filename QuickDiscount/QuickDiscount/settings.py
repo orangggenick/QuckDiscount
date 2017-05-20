@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Discount',
     'multiselectfield',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
