@@ -1,0 +1,44 @@
+{% extends 'Discount/base.html' %}
+{% load widget_tweaks %}
+
+{% block form %}
+
+    <div class="row padding-bottom">
+        <div class="col-md-12">
+            <h1>Добавление магазина</h1>
+        </div>
+    </div>
+    <div class="row" id="reg">
+        <div class="col-md-5">
+            <form role="form" action="/add_shop" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Название</label>
+                    {% render_field form.name class="form-control" id="exampleInputEmail1" placeholder="Введите название магазина"%}
+                    {% if form.name.errors %}
+                        <div class="errors">{{ form.name.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Категория</label>
+                    {% render_field form.category class="form-control" id="exampleInputEmail1" placeholder="Выберите категорию магазина"%}
+                    {% if form.category.errors %}
+                        <div class="errors">{{ form.category.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Логотип</label>
+                    {% render_field form.image id="exampleInputEmail1" %}
+                    {% if form.image.errors %}
+                        <div class="errors">{{ form.image.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Добавить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

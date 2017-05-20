@@ -9,6 +9,7 @@
         <title>QuckDiscount</title>
 
         <!-- Bootstrap core CSS -->
+
         <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha256-Av2lUNJFz7FqxLquvIFyxyCQA/VHUFna3onVy+5jUBM= sha512-zyqATyziDoUzMiMR8EAD3c5Ye55I2V3K7GcmJDHbL49cXzFQCEA6flSKqxEzwxXqq73/M4A0jKFFJ/ysEhbExQ==" crossorigin="anonymous">
         <link href={% static "style.css" %} rel="stylesheet" type="text/css">
         <!-- Custom styles for this template -->
@@ -29,12 +30,19 @@
             <div class="header">
             <ul class="nav nav-pills pull-right">
               {% if user.is_authenticated %}
-                  <li><a href="/logout">Выйти ({{ user.username }})</a></li>
+                  {% if user.discountuser.status == 'stuff' %}
+                      <li><a href="/shops">Все магазины</a></li>
+                      <li><a href="/add_shop">Добавить магазин</a></li>
+                      <li><a href="/logout">Выйти ({{ user.username }})</a></li>
+                  {% elif user.discountuser.status == 'сustomer' %}
+                      <li><a href="/shops">Магазины</a></li>
+                      <li><a href="/add_shop">Добавить магазин</a></li>
+                      <li><a href="/logout">Выйти ({{ user.username }})</a></li>
+                  {% endif %}
               {% else %}
-                  <li><a href="/advertisements">Объявления</a></li>
-                  <li><a href="/calculate">Калькулятор</a></li>
+                  <li><a href="/shops">Все магазины</a></li>
                   <li><a href="/login">Войти</a></li>
-                  <li><a href="/register">Регистрация</a></li>
+                  <li><a href="/sign_up">Регистрация</a></li>
               {% endif %}
             </ul>
             <h3 class="text-muted"><a href="/">QuckDiscount</a></h3>
@@ -42,6 +50,8 @@
 
             {% block stocks %}{% endblock %}
             {% block registration %}{% endblock %}
+            {% block shops %}{% endblock %}
+            {% block form %}{% endblock %}
 
         </div>
 

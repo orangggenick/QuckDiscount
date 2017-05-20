@@ -1,0 +1,36 @@
+{% extends 'Discount/base.html' %}
+{% load staticfiles %}
+{% block shops %}
+
+    <div class="row padding-bottom" xmlns="http://www.w3.org/1999/html">
+        <div class="col-md-12">
+            <h2>Мои магазины</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for shop in shops reversed %}
+            <div class="col-md-4">
+                {% if shop.image %}
+                    <img src="{{ shop.image.url }}" class="img img-responsive">
+                {% else %}
+                    <img src="{% static "no_image.png" %}" class="img img-responsive">
+                {% endif %}
+                <h3>{{ shop.name }}</h3>
+                <h5>Категория: {{ shop.category }}</h5>
+                {% if user.is_authenticated %}
+                    {% if shop.seller_id == user.id %}
+                        <button class="btn btn-success btn-sm">Добавить акцию</button>
+                        <a href="stock/{{ shop.id }}"><button class="btn btn-info btn-sm">Перейти к акциям</button></a>
+                    {% elif shop.seller_id != user.id %}
+                        <button class="btn btn-danger btn-sm">Подписаться</button>
+                        <a href="stock/{{ shop.id }}"><button class="btn btn-info btn-sm">Перейти к акциям</button></a>
+                    {% endif %}
+                {% else%}
+                    <a href="stock/{{ shop.id }}"><button class="btn btn-info btn-sm">Перейти к акциям</button></a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

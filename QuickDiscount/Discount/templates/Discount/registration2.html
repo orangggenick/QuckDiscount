@@ -58,7 +58,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Интересы</label>
-                    {% render_field form.categories class="form-control" id="exampleInputEmail1" placeholder="Выберите интересующие Вас категории"%}
+                    {% render_field form.categories id="exampleInputEmail1" placeholder="Выберите интересующие Вас категории"%}
                     {% if form.categories.errors %}
                         <div class="errors">{{ form.categories.errors }}</div>
                     {% endif %}

@@ -4,16 +4,16 @@ from django.forms import ModelForm
 from multiselectfield import MultiSelectField
 
 SEX_SELECT = (
-    ('man','Мужской'),
-    ('women','Женский'),
+    ('Мужской','Мужской'),
+    ('Женский','Женский'),
 )
 
 CATEGORIES_SELECT = (
-    ('clothes', 'Одежда'),
-    ('accessories', 'Аксессуары'),
-    ('tech', 'Техника'),
-    ('food', 'Еда'),
-    ('services', 'Услуги')
+    ('Одежда', 'Одежда'),
+    ('Аксессуары', 'Аксессуары'),
+    ('Техника', 'Техника'),
+    ('Еда', 'Еда'),
+    ('Услуги', 'Услуги')
 )
 
 STATUS_SELECT = (
@@ -49,7 +49,7 @@ class Shop(models.Model):
     class Meta():
         db_table = 'Shop'
     name = models.CharField(max_length=255)
-    image = models.ImageField()
+    image = models.ImageField(null=True, blank=True)
     category = models.CharField(max_length=20, choices=CATEGORIES_SELECT, default='Не выбрано')
     seller_id = models.IntegerField()
 
