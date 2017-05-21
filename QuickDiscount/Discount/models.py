@@ -18,7 +18,7 @@ CATEGORIES_SELECT = (
 
 STATUS_SELECT = (
     ('сustomer','Покупатель'),
-    ('stuff','Персонал'),
+    ('stuff','Владелец магазина'),
 )
 
 
