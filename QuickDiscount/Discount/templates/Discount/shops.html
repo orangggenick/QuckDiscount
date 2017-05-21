@@ -22,13 +22,13 @@
                 {% if user.is_authenticated %}
                     {% if shop.seller_id == user.id %}
                         <button class="btn btn-success btn-sm">Добавить акцию</button>
-                        <a href="stock/{{ shop.id }}"><button class="btn btn-info btn-sm">Перейти к акциям</button></a>
+                        <a href="shop/{{ shop.id }}"><button class="btn btn-info btn-sm">Перейти к акциям</button></a>
                     {% elif shop.seller_id != user.id %}
                         <button class="btn btn-danger btn-sm">Подписаться</button>
-                        <a href="stock/{{ shop.id }}"><button class="btn btn-info btn-sm">Перейти к акциям</button></a>
+                        <a href="shop/{{ shop.id }}"><button class="btn btn-info btn-sm">Перейти к акциям</button></a>
                     {% endif %}
                 {% else%}
-                    <a href="stock/{{ shop.id }}"><button class="btn btn-info btn-sm">Перейти к акциям</button></a>
+                    <a href="shop/{{ shop.id }}"><button class="btn btn-info btn-sm">Перейти к акциям</button></a>
                 {% endif %}
             </div>
         {% endfor %}

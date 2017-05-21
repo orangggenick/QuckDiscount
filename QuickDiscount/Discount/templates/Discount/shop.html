@@ -1,0 +1,32 @@
+{% extends 'Discount/base.html' %}
+
+{% block stocks %}
+
+    <div class="row padding-bottom">
+        <div class="col-md-12">
+            <h2>Акции магазина "{{ shop.name }}"</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            {% for stock in stocks reversed %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>{{ stock.exposition }}</h3>
+                        <h5>{{ stock.description }}</h5>
+                        <br>
+                        <h6><i>{{ stock.terms }}</i></h6>
+                        <hr>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-3 col-md-offset-3">
+            <img src="{{ shop.image.url }}" class="img img-responsive">
+            <h2>{{ shop.name }}</h2>
+            <h5>{{ shop.category }}</h5>
+        </div>
+    </div>
+
+{% endblock %}

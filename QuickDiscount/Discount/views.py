@@ -95,3 +95,7 @@ def add_shop(request):
         return render_to_response('Discount/add_shop.html', args)
     else:
         return redirect('/login')
+
+
+def shop(request, shop_id):
+    return render(request, 'Discount/shop.html', {'stocks': Stock.objects.filter(shop_id = shop_id), 'shop': Shop.objects.get(id=shop_id)})
