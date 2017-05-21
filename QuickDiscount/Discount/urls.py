@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
 
-from Discount.views import home, registration_step1, registration_step2, shops, add_shop, logout, login, shop
+from Discount.views import home, registration_step1, registration_step2, shops, add_shop, logout, login, shop, add_stock
 
 urlpatterns = [
     url(r'^$', home, name='home'),
@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'logout$', logout, name='logout'),
     url(r'login$', login, name='login'),
     url(r'shop/(?P<shop_id>\d+)', shop, name='shop'),
+    url(r'add_stock/(?P<shop_id>\d+)', add_stock, name='add_stock'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

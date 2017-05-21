@@ -21,7 +21,7 @@
                 <h5>Категория: {{ shop.category }}</h5>
                 {% if user.is_authenticated %}
                     {% if shop.seller_id == user.id %}
-                        <button class="btn btn-success btn-sm">Добавить акцию</button>
+                        <a href="/add_stock/{{ shop.id }}"><button class="btn btn-success btn-sm">Добавить акцию</button></a>
                         <a href="shop/{{ shop.id }}"><button class="btn btn-info btn-sm">Перейти к акциям</button></a>
                     {% elif shop.seller_id != user.id %}
                         <button class="btn btn-danger btn-sm">Подписаться</button>

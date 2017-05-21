@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, render_to_response
 from django.template.context_processors import csrf
 
-from Discount.models import Stock, DiscountUserForm, DiscountUser, Shop, ShopForm
+from Discount.models import Stock, DiscountUserForm, DiscountUser, Shop, ShopForm, StockForm
 
 
 def home(request):
@@ -99,3 +99,24 @@ def add_shop(request):
 
 def shop(request, shop_id):
     return render(request, 'Discount/shop.html', {'stocks': Stock.objects.filter(shop_id = shop_id), 'shop': Shop.objects.get(id=shop_id)})
+
+
+def add_stock(request, shop_id):
+    shop = Shop.objects.get(id = shop_id)
+    if auth.get_user(request).id == shop.seller_id:
+        args = {}
+        args.update(csrf(request))
+        args['form'] = StockForm()
+        args['shop'] = Shop.objects.get(id=shop_id)
+        if request.POST:
+            stock_form = StockForm(request.POST)
+            if stock_form.is_valid():
+                buffer = stock_form.save(commit=False)
+                buffer.shop_id = shop_id
+                stock_form.save()
+                return redirect('/')
+            else:
+                args['form'] = stock_form
+        return render_to_response('Discount/add_stock.html', args)
+    else:
+        return redirect('/login')

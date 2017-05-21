@@ -1,0 +1,49 @@
+{% extends 'Discount/base.html' %}
+{% load widget_tweaks %}
+
+{% block form %}
+
+    <div class="row padding-bottom">
+        <div class="col-md-12">
+            <h1>Добавление акции</h1>
+        </div>
+    </div>
+    <div class="row" id="reg">
+        <div class="col-md-5">
+            <form role="form" action="/add_stock/{{ shop.id }}" method="post">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Заголовок</label>
+                    {% render_field form.exposition class="form-control" id="exampleInputEmail1" placeholder="Введите заголовок акции" %}
+                    {% if form.exposition.errors %}
+                        <div class="errors">{{ form.exposition.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Описание</label>
+                    {% render_field form.description class="form-control" id="exampleInputEmail1" placeholder="Введите описание акции" %}
+                    {% if form.description.errors %}
+                        <div class="errors">{{ form.description.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Сроки проведения</label>
+                    {% render_field form.terms class="form-control" id="exampleInputEmail1" placeholder="Введите сроки проведения" %}
+                    {% if form.terms.errors %}
+                        <div class="errors">{{ form.terms.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Добавить</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3 col-md-offset-3">
+            <img src="{{ shop.image.url }}" class="img img-responsive">
+            <h2>{{ shop.name }}</h2>
+            <h5>{{ shop.category }}</h5>
+        </div>
+    </div>
+
+{% endblock %}

@@ -78,7 +78,7 @@ class Stock(models.Model):
 class StockForm(ModelForm):
     class Meta():
         model = Stock
-        exclude = ['shop_id']
+        exclude = ['shop_id', 'date']
 
 
 class Subscription(models.Model):
