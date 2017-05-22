@@ -84,5 +84,11 @@ class StockForm(ModelForm):
 class Subscription(models.Model):
     class Meta():
         db_table = 'subscription'
-    user_id = models.IntegerField()
-    shop_id = models.IntegerField()
+    user_id = models.IntegerField(null=True)
+    shop_id = models.IntegerField(null=True)
+
+
+class SubscriptionForm(ModelForm):
+    class Meta():
+        model = Subscription
+        exclude = ['user_id', 'shop_id']

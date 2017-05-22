@@ -2,6 +2,16 @@
 
 {% block stocks %}
 
+    <div class="row padding-bottom">
+        <div class="col-md-12">
+            {% if user.is_authenticated %}
+                <h2>Мои подписки</h2>
+            {% else %}
+                <h2>Последние акции</h2>
+            {% endif %}
+        </div>
+    </div>
+
     {% for stock in stocks reversed %}
 
     <div class="row">

@@ -3,7 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, render_to_response
 from django.template.context_processors import csrf
 
-from Discount.models import Stock, DiscountUserForm, DiscountUser, Shop, ShopForm, StockForm
+from Discount.models import Stock, DiscountUserForm, DiscountUser, Shop, ShopForm, StockForm, SubscriptionForm, \
+    Subscription
 
 
 def home(request):
@@ -13,7 +14,15 @@ def home(request):
         if status == 'stuff':
             return render(request, 'Discount/myshops.html', {'shops': Shop.objects.filter(seller_id = auth.get_user(request).id)})
         else:
-            return render(request, 'Discount/index.html', {'stocks': Stock.objects.all()})
+            subscriptions = Subscription.objects.filter(user_id=auth.get_user(request).id)
+            buffer = []
+            for subscription in subscriptions:
+                buffer.append(Stock.objects.filter(shop_id=subscription.shop_id))
+            stocks = []
+            for set in range(len(buffer)):
+                for stock in range(len(buffer[set])):
+                    stocks.append(buffer[set][stock])
+            return render(request, 'Discount/index.html', {'stocks': stocks})
     else:
         return render(request, 'Discount/index.html', {'stocks': Stock.objects.all()})
 
@@ -118,5 +127,19 @@ def add_stock(request, shop_id):
             else:
                 args['form'] = stock_form
         return render_to_response('Discount/add_stock.html', args)
+    else:
+        return redirect('/login')
+
+
+def subscribe(request, shop_id):
+    if auth.get_user(request).id != None:
+        subscription = SubscriptionForm()
+        if subscription.is_valid():
+            subscription.user_id = auth.get_user(request).id
+            print(subscription.user_id)
+            subscription.shop_id = shop_id
+            print(subscription.shop_id)
+            subscription.save()
+        return redirect('/')
     else:
         return redirect('/login')
