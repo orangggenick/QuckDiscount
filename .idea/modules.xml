@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/QuickDiscount.iml" filepath="$PROJECT_DIR$/.idea/QuickDiscount.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Discount.iml" filepath="$PROJECT_DIR$/.idea/Discount.iml" />
     </modules>
   </component>
 </project>
