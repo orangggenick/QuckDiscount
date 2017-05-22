@@ -83,9 +83,9 @@ class StockForm(ModelForm):
 
 class Subscription(models.Model):
     class Meta():
-        db_table = 'subscription'
-    user_id = models.IntegerField(null=True)
-    shop_id = models.IntegerField(null=True)
+        db_table = 'Subscription'
+    user_id = models.IntegerField(null=True, blank=True)
+    shop_id = models.IntegerField(null=True, blank=True)
 
 
 class SubscriptionForm(ModelForm):

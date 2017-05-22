@@ -84,7 +84,11 @@ def logout(request):
 
 
 def shops(request):
-    return render(request, 'Discount/shops.html', {'shops': Shop.objects.all()})
+    subscriptions = Subscription.objects.filter(user_id=auth.get_user(request).id)
+    shop_ids = []
+    for subscription in subscriptions:
+        shop_ids.append(subscription.shop_id)
+    return render(request, 'Discount/shops.html', {'shops': Shop.objects.all(), 'shop_ids': shop_ids})
 
 
 def add_shop(request):
@@ -107,7 +111,11 @@ def add_shop(request):
 
 
 def shop(request, shop_id):
-    return render(request, 'Discount/shop.html', {'stocks': Stock.objects.filter(shop_id = shop_id), 'shop': Shop.objects.get(id=shop_id)})
+    subscriptions = Subscription.objects.filter(user_id=auth.get_user(request).id)
+    shop_ids = []
+    for subscription in subscriptions:
+        shop_ids.append(subscription.shop_id)
+    return render(request, 'Discount/shop.html', {'stocks': Stock.objects.filter(shop_id = shop_id), 'shop': Shop.objects.get(id=shop_id), 'shop_ids': shop_ids})
 
 
 def add_stock(request, shop_id):
@@ -133,11 +141,12 @@ def add_stock(request, shop_id):
 
 def subscribe(request, shop_id):
     if auth.get_user(request).id != None:
-        subscription = SubscriptionForm()
+        subscription = SubscriptionForm(request.GET)
         if subscription.is_valid():
-            subscription.user_id = auth.get_user(request).id
+            buffer = subscription.save(commit=False)
+            buffer.user_id = auth.get_user(request).id
             print(subscription.user_id)
-            subscription.shop_id = shop_id
+            buffer.shop_id = shop_id
             print(subscription.shop_id)
             subscription.save()
         return redirect('/')

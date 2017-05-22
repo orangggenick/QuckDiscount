@@ -24,7 +24,11 @@
                         <a href="/add_stock/{{ shop.id }}"><button class="btn btn-success btn-sm">Добавить акцию</button></a>
                         <a href="shop/{{ shop.id }}"><button class="btn btn-info btn-sm">Перейти к акциям</button></a>
                     {% elif shop.seller_id != user.id %}
-                        <a href="/subscribe/{{ shop.id }}"><button class="btn btn-danger btn-sm">Подписаться</button></a>
+                        {% if shop.id in shop_ids %}
+                            <a href="/subscribe/{{ shop.id }}"><button class="btn btn-danger btn-sm">Отписаться</button></a>
+                        {% else %}
+                            <a href="/subscribe/{{ shop.id }}"><button class="btn btn-danger btn-sm">Подписаться</button></a>
+                        {% endif %}
                         <a href="shop/{{ shop.id }}"><button class="btn btn-info btn-sm">Перейти к акциям</button></a>
                     {% endif %}
                 {% else%}
