@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57072d4a-e40d-44db-b7f7-ea223e3271ad" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discount/migrations/0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discount/migrations/0002_auto_20170520_1417.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discount/migrations/0003_auto_20170522_0430.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discount/migrations/0004_auto_20170522_1556.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discount/models.py" afterPath="$PROJECT_DIR$/Discount/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discount/templates/Discount/base.html" afterPath="$PROJECT_DIR$/Discount/templates/Discount/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discount/templates/Discount/index.html" afterPath="$PROJECT_DIR$/Discount/templates/Discount/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discount/templates/Discount/myshops.html" afterPath="$PROJECT_DIR$/Discount/templates/Discount/myshops.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discount/templates/Discount/shop.html" afterPath="$PROJECT_DIR$/Discount/templates/Discount/shop.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discount/templates/Discount/shops.html" afterPath="$PROJECT_DIR$/Discount/templates/Discount/shops.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discount/urls.py" afterPath="$PROJECT_DIR$/Discount/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discount/views.py" afterPath="$PROJECT_DIR$/Discount/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QuickDiscount/settings.py" afterPath="$PROJECT_DIR$/QuickDiscount/settings.py" />
     </list>
     <ignored path="Discount.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/QuickDiscount/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
+            <state relative-caret-position="165">
+              <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -73,7 +60,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Discount/templates/Discount/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="445">
@@ -151,6 +138,7 @@
         <option value="$PROJECT_DIR$/Discount/models.py" />
         <option value="$PROJECT_DIR$/Discount/views.py" />
         <option value="$PROJECT_DIR$/Discount/templates/Discount/index.html" />
+        <option value="$PROJECT_DIR$/QuickDiscount/settings.py" />
       </list>
     </option>
   </component>
@@ -460,14 +448,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/QuickDiscount/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Discount/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-15">
@@ -482,6 +462,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="445">
           <caret line="47" column="31" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QuickDiscount/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
           <folding />
         </state>
       </provider>
