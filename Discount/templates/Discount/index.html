@@ -12,19 +12,43 @@
         </div>
     </div>
 
-    {% for stock in stocks reversed %}
+    {% if stocks.count != 0 %}
 
-    <div class="row">
-        <div class="col-md-6">
-            <h3>{{ stock.exposition }}</h3>
-            <br>
-            <h5>{{ stock.description }}</h5>
-            <br>
-            <h6><i>{{ stock.terms }}</i></h6>
-            <hr>
+        {% for stock in stocks reversed %}
+
+        <div class="row">
+            <div class="col-md-6">
+                <h3>{{ stock.exposition }}</h3>
+                <br>
+                <h5>{{ stock.description }}</h5>
+                <br>
+                <h6><i>{{ stock.terms }}</i></h6>
+                <hr>
+            </div>
         </div>
-    </div>
 
-    {% endfor %}
+        {% endfor %}
+
+    {% elif user.is_authenticated %}
+
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Похоже, тут пока ничего нет</h3>
+                <h5>Подпишитесь на интересующие Вас магазины</h5>
+                <a href="/shops"><button class="btn btn-info btn-sm">Все магазины</button></a>
+            </div>
+        </div>
+
+    {% else %}
+
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Похоже, тут пока ничего нет</h3>
+                <h5>Войдите или зарегистрируйтесь, чтобы подписаться на интересущие Вас магазины</h5>
+                <a href="/login"><button class="btn btn-info btn-sm">Войти</button></a>
+            </div>
+        </div>
+
+    {% endif %}
 
 {% endblock %}

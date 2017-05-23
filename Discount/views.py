@@ -3,26 +3,21 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, render_to_response
 from django.template.context_processors import csrf
 
-from Discount.models import Stock, DiscountUserForm, DiscountUser, Shop, ShopForm, StockForm, SubscriptionForm, \
+from Discount.models import Stock, DiscountUserForm, DiscountUser, Shop, ShopForm, StockForm, \
     Subscription
 
 
 def home(request):
     if auth.get_user(request).id != None:
-        user = auth.get_user(request)
-        status = user.discountuser.status
-        if status == 'stuff':
-            return render(request, 'Discount/myshops.html', {'shops': Shop.objects.filter(seller_id = auth.get_user(request).id)})
-        else:
-            subscriptions = Subscription.objects.filter(user_id=auth.get_user(request).id)
-            buffer = []
-            for subscription in subscriptions:
-                buffer.append(Stock.objects.filter(shop_id=subscription.shop_id))
-            stocks = []
-            for set in range(len(buffer)):
-                for stock in range(len(buffer[set])):
-                    stocks.append(buffer[set][stock])
-            return render(request, 'Discount/index.html', {'stocks': stocks})
+        subscriptions = Subscription.objects.filter(user_id=auth.get_user(request).id)
+        buffer = []
+        for subscription in subscriptions:
+            buffer.append(Stock.objects.filter(shop_id=subscription.shop_id))
+        stocks = []
+        for set in range(len(buffer)):
+            for stock in range(len(buffer[set])):
+                stocks.append(buffer[set][stock])
+        return render(request, 'Discount/index.html', {'stocks': stocks})
     else:
         return render(request, 'Discount/index.html', {'stocks': Stock.objects.all()})
 
@@ -129,6 +124,7 @@ def add_stock(request, shop_id):
             stock_form = StockForm(request.POST)
             if stock_form.is_valid():
                 buffer = stock_form.save(commit=False)
+                buffer.is_active = True
                 buffer.shop_id = shop_id
                 stock_form.save()
                 return redirect('/')
@@ -141,14 +137,32 @@ def add_stock(request, shop_id):
 
 def subscribe(request, shop_id):
     if auth.get_user(request).id != None:
-        subscription = SubscriptionForm(request.GET)
-        if subscription.is_valid():
-            buffer = subscription.save(commit=False)
-            buffer.user_id = auth.get_user(request).id
-            print(subscription.user_id)
-            buffer.shop_id = shop_id
-            print(subscription.shop_id)
-            subscription.save()
+        subscription = Subscription()
+        subscription.user_id = auth.get_user(request).id
+        subscription.shop_id = shop_id
+        print(subscription.shop_id)
+        subscription.save()
         return redirect('/')
     else:
         return redirect('/login')
+
+
+def unsubscribe(request, shop_id):
+    if auth.get_user(request).id != None:
+        query = Subscription.objects.filter(user_id = auth.get_user(request).id)
+        query.get(shop_id = shop_id).delete()
+        return redirect('/')
+    else:
+        return redirect('/login')
+
+
+def myshops(request):
+    if auth.get_user(request).id != None:
+        user = auth.get_user(request)
+        status = user.discountuser.status
+        if status == 'stuff':
+            return render(request, 'Discount/myshops.html', {'shops': Shop.objects.filter(seller_id = auth.get_user(request).id)})
+        else:
+            return redirect('/')
+    else:
+        return redirect('/')

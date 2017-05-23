@@ -32,7 +32,7 @@ class DiscountUser(models.Model):
     sex = models.CharField(max_length=10, choices=SEX_SELECT, default='Не выбрано')
     phone = models.CharField(max_length=20)
     email = models.EmailField(max_length=255)
-    categories = MultiSelectField(choices=CATEGORIES_SELECT)
+    categories = MultiSelectField(choices=CATEGORIES_SELECT, blank=True, null=True)
     status = models.CharField(max_length=10, choices=STATUS_SELECT, default='Не выбрано')
 
     def __str__(self):
@@ -70,6 +70,7 @@ class Stock(models.Model):
     terms = models.CharField(max_length=255)
     description = models.TextField()
     date = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField()
     shop_id = models.IntegerField()
 
     def __str__(self):
@@ -78,7 +79,7 @@ class Stock(models.Model):
 class StockForm(ModelForm):
     class Meta():
         model = Stock
-        exclude = ['shop_id', 'date']
+        exclude = ['shop_id', 'date', 'is_active']
 
 
 class Subscription(models.Model):
@@ -86,9 +87,3 @@ class Subscription(models.Model):
         db_table = 'Subscription'
     user_id = models.IntegerField(null=True, blank=True)
     shop_id = models.IntegerField(null=True, blank=True)
-
-
-class SubscriptionForm(ModelForm):
-    class Meta():
-        model = Subscription
-        exclude = ['user_id', 'shop_id']

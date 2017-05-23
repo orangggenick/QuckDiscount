@@ -35,7 +35,7 @@
                 <a href="/add_stock/{{ shop.id }}"><button class="btn btn-info btn-sm">Добавить акцию</button></a>
             {% elif user.is_authenticated %}
                 {% if shop.id in shop_ids %}
-                    <a href="/subscribe/{{ shop.id }}"><button class="btn btn-danger btn-sm">Отписаться</button></a>
+                    <a href="/unsubscribe/{{ shop.id }}"><button class="btn btn-danger btn-sm">Отписаться</button></a>
                 {% else %}
                     <a href="/subscribe/{{ shop.id }}"><button class="btn btn-danger btn-sm">Подписаться</button></a>
                 {% endif %}

@@ -31,6 +31,7 @@
             <ul class="nav nav-pills pull-right">
               {% if user.is_authenticated %}
                   {% if user.discountuser.status == 'stuff' %}
+                      <li><a href="/myshops">Мои магазины</a></li>
                       <li><a href="/shops">Все магазины</a></li>
                       <li><a href="/add_shop">Добавить магазин</a></li>
                       <li><a href="/logout">Выйти ({{ user.username }})</a></li>
