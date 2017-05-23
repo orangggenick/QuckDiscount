@@ -8,18 +8,7 @@ from Discount.models import Stock, DiscountUserForm, DiscountUser, Shop, ShopFor
 
 
 def home(request):
-    if auth.get_user(request).id != None:
-        subscriptions = Subscription.objects.filter(user_id=auth.get_user(request).id)
-        buffer = []
-        for subscription in subscriptions:
-            buffer.append(Stock.objects.filter(shop_id=subscription.shop_id))
-        stocks = []
-        for set in range(len(buffer)):
-            for stock in range(len(buffer[set])):
-                stocks.append(buffer[set][stock])
-        return render(request, 'Discount/index.html', {'stocks': stocks})
-    else:
-        return render(request, 'Discount/index.html', {'stocks': Stock.objects.all()})
+    return render(request, 'Discount/index.html', {'stocks': Stock.objects.filter(is_active=True)})
 
 
 def registration_step1(request):
@@ -164,5 +153,20 @@ def myshops(request):
             return render(request, 'Discount/myshops.html', {'shops': Shop.objects.filter(seller_id = auth.get_user(request).id)})
         else:
             return redirect('/')
+    else:
+        return redirect('/')
+
+
+def mysubscripthons(request):
+    if auth.get_user(request).id != None:
+        subscriptions = Subscription.objects.filter(user_id=auth.get_user(request).id)
+        buffer = []
+        for subscription in subscriptions:
+            buffer.append(Stock.objects.filter(shop_id=subscription.shop_id))
+        stocks = []
+        for set in range(len(buffer)):
+            for stock in range(len(buffer[set])):
+                stocks.append(buffer[set][stock])
+        return render(request, 'Discount/mysubscripthons.html', {'stocks': stocks})
     else:
         return redirect('/')

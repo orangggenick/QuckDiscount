@@ -3,7 +3,7 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 
 from Discount.views import home, registration_step1, registration_step2, shops, add_shop, logout, login, shop, add_stock, \
-    subscribe, unsubscribe, myshops
+    subscribe, unsubscribe, myshops, mysubscripthons
 
 urlpatterns = [
     url(r'^$', home, name='home'),
@@ -17,5 +17,6 @@ urlpatterns = [
     url(r'shop/(?P<shop_id>\d+)', shop, name='shop'),
     url(r'add_stock/(?P<shop_id>\d+)', add_stock, name='add_stock'),
     url(r'unsubscribe/(?P<shop_id>\d+)', unsubscribe, name='unsubscribe'),
+    url(r'mysubscripthons$', mysubscripthons, name='mysubscripthons'),
     url(r'subscribe/(?P<shop_id>\d+)', subscribe, name='subscribe'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
