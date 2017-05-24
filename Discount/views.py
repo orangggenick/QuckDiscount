@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, render_to_response
 from django.template.context_processors import csrf
 
 from Discount.models import Stock, DiscountUserForm, DiscountUser, Shop, ShopForm, StockForm, \
-    Subscription
+    Subscription, DiscountUserForm2, ShopForm2
 
 
 def home(request):
@@ -81,7 +81,7 @@ def add_shop(request):
         args.update(csrf(request))
         args['form'] = ShopForm()
         if request.POST:
-            user_form = ShopForm(request.POST)
+            user_form = ShopForm(request.POST, request.FILES)
             if user_form.is_valid():
                 buffer = user_form.save(commit=False)
                 buffer.seller_id = auth.get_user(request).id
@@ -170,3 +170,98 @@ def mysubscripthons(request):
         return render(request, 'Discount/mysubscripthons.html', {'stocks': stocks})
     else:
         return redirect('/')
+
+
+def cabinet(request):
+    if auth.get_user(request).id != None:
+        user = DiscountUser.objects.get(user = auth.get_user(request))
+        args = {}
+        args.update(csrf(request))
+        args['form'] = DiscountUserForm2
+        args['user'] = user
+        if request.POST:
+            form = DiscountUserForm2(request.POST)
+            if form.is_valid():
+                buffer = form.save(commit=False)
+                user.name = buffer.name
+                user.surname = buffer.surname
+                user.patronymic = buffer.patronymic
+                user.phone = buffer.phone
+                user.email = buffer.email
+                user.categories = buffer.categories
+                user.save()
+                return redirect('/')
+            else:
+                args['form'] = DiscountUserForm2
+        return render_to_response('Discount/cabinet.html', args)
+    else:
+        return redirect('/login')
+
+
+def change_logo(request, shop_id):
+    if auth.get_user(request).id != None:
+        shop = Shop.objects.get(id=shop_id)
+        if auth.get_user(request).id == shop.seller_id:
+            args = {}
+            args.update(csrf(request))
+            args['form'] = ShopForm2
+            args['shop'] = shop
+            if request.POST:
+                form = ShopForm2(request.POST, request.FILES)
+                if form.is_valid():
+                    buffer = form.save(commit=False)
+                    shop.image = buffer.image
+                    shop.save()
+                    return redirect('/')
+                else:
+                    args['form'] = ShopForm2
+            return render_to_response('Discount/change_logo.html', args)
+        else:
+            return redirect('/')
+    else:
+        return redirect('/login')
+
+
+def change_stock(request, stock_id):
+    if auth.get_user(request).id != None:
+        stock = Stock.objects.get(id=stock_id)
+        shop = Shop.objects.get(id = stock.shop_id)
+        if auth.get_user(request).id == shop.seller_id:
+            args = {}
+            args.update(csrf(request))
+            args['form'] = StockForm
+            args['shop'] = shop
+            args['stock'] = stock
+            if request.POST:
+                print('Дошел')
+                form = StockForm(request.POST)
+                print('Дошел')
+                if form.is_valid():
+                    print('Дошел')
+                    buffer = form.save(commit=False)
+                    stock.exposition = buffer.exposition
+                    stock.description = buffer.description
+                    stock.terms = buffer.terms
+                    stock.save()
+                    return redirect('/shop/' + str(shop.id))
+                else:
+                    args['form'] = StockForm
+            return render_to_response('Discount/change_stock.html', args)
+        else:
+            return redirect('/')
+    else:
+        return redirect('/login')
+
+
+def delete_stock(request, stock_id):
+    if auth.get_user(request).id != None:
+        stock = Stock.objects.get(id=stock_id)
+        shop = Shop.objects.get(id = stock.shop_id)
+        if auth.get_user(request).id == shop.seller_id:
+            stock.delete()
+            shop = Shop.objects.get(id=stock.shop_id)
+            return redirect('/shop/' + str(shop.id))
+        else:
+            return redirect('/')
+    else:
+        return redirect('/login')

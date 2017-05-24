@@ -45,6 +45,12 @@ class DiscountUserForm(ModelForm):
         exclude = ['user']
 
 
+class DiscountUserForm2(ModelForm):
+    class Meta():
+        model = DiscountUser
+        exclude = ['user', 'status', 'sex']
+
+
 class Shop(models.Model):
     class Meta():
         db_table = 'Shop'
@@ -61,6 +67,12 @@ class ShopForm(ModelForm):
     class Meta():
         model = Shop
         exclude = ['seller_id']
+
+
+class ShopForm2(ModelForm):
+    class Meta():
+        model = Shop
+        exclude = ['seller_id', 'name', 'category']
 
 
 class Stock(models.Model):

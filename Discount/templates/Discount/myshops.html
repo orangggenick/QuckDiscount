@@ -5,10 +5,11 @@
     <div class="row padding-bottom" xmlns="http://www.w3.org/1999/html">
         <div class="col-md-12">
             <h2>Мои магазины</h2>
+            <a href="/add_shop"><button class="btn btn-info btn-sm">Добавить магазин</button></a>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row padding-bottom">
         {% for shop in shops reversed %}
             <div class="col-md-4">
                 {% if shop.image %}

@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row padding-bottom">
         <div class="col-md-6">
             {% for stock in stocks reversed %}
                 <div class="row">
@@ -18,6 +18,10 @@
                         <h5>{{ stock.description }}</h5>
                         <br>
                         <h6><i>{{ stock.terms }}</i></h6>
+                        {% if shop.seller_id == user.id %}
+                            <a href="/change_stock/{{ stock.id }}"><button class="btn btn-info btn-sm">Изменить акцию</button></a>
+                            <a href="/delete_stock/{{ stock.id }}"><button class="btn btn-danger btn-sm">Удалить акцию</button></a>
+                        {% endif %}
                         <hr>
                     </div>
                 </div>
@@ -33,6 +37,7 @@
             <h5>{{ shop.category }}</h5>
             {% if shop.seller_id == user.id %}
                 <a href="/add_stock/{{ shop.id }}"><button class="btn btn-info btn-sm">Добавить акцию</button></a>
+                <a href="/change_logo/{{ shop.id }}"><button class="btn btn-warning btn-sm">Изменить логотип</button></a>
             {% elif user.is_authenticated %}
                 {% if shop.id in shop_ids %}
                     <a href="/unsubscribe/{{ shop.id }}"><button class="btn btn-danger btn-sm">Отписаться</button></a>
