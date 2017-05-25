@@ -18,7 +18,15 @@
                 <br>
                 <h5>{{ stock.description }}</h5>
                 <br>
-                <h6><i>{{ stock.terms }}</i></h6>
+                <h6>Действует до: <i>{{ stock.terms }}</i></h6>
+                <a href="shop/{{ stock.shop_id }}"><button class="btn btn-info btn-sm">Перейти к магазину</button></a>
+                {% if user.is_authenticated %}
+                    {% if stock.id in favorite_ids %}
+                        <a href="delete_from_favorites/{{ stock.id }}"><button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-star"></span> Удалить из избранного</button></a>
+                    {% else %}
+                        <a href="add_to_favorites/{{ stock.id }}"><button class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-star"></span> В избранное</button></a>
+                    {% endif %}
+                {% endif %}
                 <hr>
             </div>
         </div>

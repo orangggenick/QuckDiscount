@@ -4,11 +4,18 @@ from django.shortcuts import render, redirect, render_to_response
 from django.template.context_processors import csrf
 
 from Discount.models import Stock, DiscountUserForm, DiscountUser, Shop, ShopForm, StockForm, \
-    Subscription, DiscountUserForm2, ShopForm2
+    Subscription, DiscountUserForm2, ShopForm2, Favorites
 
 
 def home(request):
-    return render(request, 'Discount/index.html', {'stocks': Stock.objects.filter(is_active=True)})
+    if auth.get_user(request).id != None:
+        favorites = Favorites.objects.filter(user_id=auth.get_user(request).id)
+        stocks_ids = []
+        for favorite in favorites:
+            stocks_ids.append(favorite.stock_id)
+        return render(request, 'Discount/index.html', {'stocks': Stock.objects.filter(is_active=True), 'favorite_ids': stocks_ids})
+    else:
+        return render(request, 'Discount/index.html', {'stocks': Stock.objects.filter(is_active=True)})
 
 
 def registration_step1(request):
@@ -167,7 +174,11 @@ def mysubscripthons(request):
         for set in range(len(buffer)):
             for stock in range(len(buffer[set])):
                 stocks.append(buffer[set][stock])
-        return render(request, 'Discount/mysubscripthons.html', {'stocks': stocks})
+        favorites = Favorites.objects.filter(user_id=auth.get_user(request).id)
+        stocks_ids = []
+        for favorite in favorites:
+            stocks_ids.append(favorite.stock_id)
+        return render(request, 'Discount/mysubscripthons.html', {'stocks': stocks, 'favorite_ids': stocks_ids})
     else:
         return redirect('/')
 
@@ -265,3 +276,34 @@ def delete_stock(request, stock_id):
             return redirect('/')
     else:
         return redirect('/login')
+
+
+def add_to_favorites(request, stock_id):
+    if auth.get_user(request).id != None:
+        favourite = Favorites()
+        favourite.user_id = auth.get_user(request).id
+        favourite.stock_id = stock_id
+        favourite.save()
+        return redirect('/')
+    else:
+        return redirect('/login')
+
+
+def delete_from_favorites(request, stock_id):
+    if auth.get_user(request).id != None:
+        query = Favorites.objects.filter(user_id=auth.get_user(request).id)
+        query.get(stock_id=stock_id).delete()
+        return redirect('/')
+    else:
+        return redirect('/login')
+
+
+def myfavorites(request):
+    if auth.get_user(request).id != None:
+        favorites = Favorites.objects.filter(user_id=auth.get_user(request).id)
+        buffer = []
+        for favorite in favorites:
+            buffer.append(Stock.objects.get(id=favorite.stock_id))
+        return render(request, 'Discount/myfavorites.html', {'stocks': buffer})
+    else:
+        return redirect('/')

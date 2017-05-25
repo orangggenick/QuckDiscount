@@ -34,11 +34,13 @@
                       <li class="border"><a href="/cabinet">Мой кабинет</a></li>
                       <li class="border"><a href="/myshops">Мои магазины</a></li>
                       <li class="border"><a href="/mysubscripthons">Мои подписки</a></li>
+                      <li class="border"><a href="/myfavorites">Избранное</a></li>
                       <li class="border"><a href="/shops">Все магазины</a></li>
                       <li class="border"><a href="/logout">Выйти ({{ user.username }})</a></li>
                   {% elif user.discountuser.status == 'сustomer' %}
                       <li class="border"><a href="/cabinet">Мой кабинет</a></li>
                       <li class="border"><a href="/mysubscripthons">Мои подписки</a></li>
+                      <li class="border"><a href="/myfavorites">Избранное</a></li>
                       <li class="border"><a href="/shops">Магазины</a></li>
                       <li class="border"><a href="/logout">Выйти ({{ user.username }})</a></li>
                   {% endif %}

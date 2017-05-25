@@ -79,7 +79,7 @@ class Stock(models.Model):
     class Meta():
         db_table = 'Stock'
     exposition = models.CharField(max_length=255)
-    terms = models.CharField(max_length=255)
+    terms = models.DateField()
     description = models.TextField()
     date = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField()
@@ -99,3 +99,10 @@ class Subscription(models.Model):
         db_table = 'Subscription'
     user_id = models.IntegerField(null=True, blank=True)
     shop_id = models.IntegerField(null=True, blank=True)
+
+
+class Favorites(models.Model):
+    class Meta():
+        db_table = 'Favorites'
+    user_id = models.IntegerField(null=True, blank=True)
+    stock_id = models.IntegerField(null=True, blank=True)
