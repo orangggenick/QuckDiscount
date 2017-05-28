@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.contrib.admin import widgets
 from django.db import models
 from django.forms import ModelForm
 from multiselectfield import MultiSelectField

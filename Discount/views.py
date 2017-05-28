@@ -8,6 +8,7 @@ from Discount.models import Stock, DiscountUserForm, DiscountUser, Shop, ShopFor
 
 
 def home(request):
+    # :return html start page
     if auth.get_user(request).id != None:
         favorites = Favorites.objects.filter(user_id=auth.get_user(request).id)
         stocks_ids = []
@@ -19,6 +20,7 @@ def home(request):
 
 
 def registration_step1(request):
+    # :return html registration with form or redirect to complete registration
     args = {}
     args.update(csrf(request))
     args['form'] = UserCreationForm()
@@ -35,6 +37,7 @@ def registration_step1(request):
 
 
 def registration_step2(request):
+    # :return redirect to start page or html complete registration with form or redirect to sign up
     if auth.get_user(request).id != None:
         args = {}
         args.update(csrf(request))
@@ -54,6 +57,7 @@ def registration_step2(request):
 
 
 def login(request):
+    # :return html login with form or redirect to start page or html login with form and error
     args = {}
     args.update(csrf(request))
     if request.POST:
@@ -70,11 +74,13 @@ def login(request):
         return render_to_response('Discount/login.html', args)
 
 def logout(request):
+    # :return redirect to start page
     auth.logout(request)
     return redirect("/")
 
 
 def shops(request):
+    # :return html with full list of shops
     subscriptions = Subscription.objects.filter(user_id=auth.get_user(request).id)
     shop_ids = []
     for subscription in subscriptions:
@@ -83,6 +89,7 @@ def shops(request):
 
 
 def add_shop(request):
+    # :return html add_shop with form or redirect to start page or redirect to login
     if auth.get_user(request).id != None:
         args = {}
         args.update(csrf(request))
@@ -102,6 +109,8 @@ def add_shop(request):
 
 
 def shop(request, shop_id):
+    # :param string shop_id: id of requesting shop
+    # :return
     subscriptions = Subscription.objects.filter(user_id=auth.get_user(request).id)
     shop_ids = []
     for subscription in subscriptions:
@@ -244,11 +253,8 @@ def change_stock(request, stock_id):
             args['shop'] = shop
             args['stock'] = stock
             if request.POST:
-                print('Дошел')
                 form = StockForm(request.POST)
-                print('Дошел')
                 if form.is_valid():
-                    print('Дошел')
                     buffer = form.save(commit=False)
                     stock.exposition = buffer.exposition
                     stock.description = buffer.description
