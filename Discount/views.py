@@ -110,12 +110,15 @@ def add_shop(request):
 
 def shop(request, shop_id):
     # :param string shop_id: id of requesting shop
-    # :return
     subscriptions = Subscription.objects.filter(user_id=auth.get_user(request).id)
     shop_ids = []
     for subscription in subscriptions:
         shop_ids.append(subscription.shop_id)
-    return render(request, 'Discount/shop.html', {'stocks': Stock.objects.filter(shop_id = shop_id), 'shop': Shop.objects.get(id=shop_id), 'shop_ids': shop_ids})
+    favorites = Favorites.objects.filter(user_id=auth.get_user(request).id)
+    stocks_ids = []
+    for favorite in favorites:
+        stocks_ids.append(favorite.stock_id)
+    return render(request, 'Discount/shop.html', {'stocks': Stock.objects.filter(shop_id = shop_id), 'shop': Shop.objects.get(id=shop_id), 'shop_ids': shop_ids, 'favorite_ids': stocks_ids})
 
 
 def add_stock(request, shop_id):

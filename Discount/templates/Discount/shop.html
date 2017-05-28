@@ -22,6 +22,13 @@
                             <a href="/change_stock/{{ stock.id }}"><button class="btn btn-info btn-sm">Изменить акцию</button></a>
                             <a href="/delete_stock/{{ stock.id }}"><button class="btn btn-danger btn-sm">Удалить акцию</button></a>
                         {% endif %}
+                        {% if user.is_authenticated %}
+                            {% if stock.id in favorite_ids %}
+                                <a href="delete_from_favorites/{{ stock.id }}"><button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-star"></span> Удалить из избранного</button></a>
+                            {% else %}
+                                <a href="add_to_favorites/{{ stock.id }}"><button class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-star"></span> В избранное</button></a>
+                            {% endif %}
+                        {% endif %}
                         <hr>
                     </div>
                 </div>
