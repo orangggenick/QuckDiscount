@@ -1,0 +1,389 @@
+\hypertarget{namespace_discount_1_1views}{}\section{Discount.\+views Namespace Reference}
+\label{namespace_discount_1_1views}\index{Discount.\+views@{Discount.\+views}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespace_discount_1_1views_ae8581c9b9d2f9447119a4512c0d6b40f}{home} (request)
+\item 
+def \hyperlink{namespace_discount_1_1views_a6fe3e41a2a7d661f576ef987dddcb1e4}{registration\+\_\+step1} (request)
+\item 
+def \hyperlink{namespace_discount_1_1views_aa1fb55cf7351af98f96003a48105e5b3}{registration\+\_\+step2} (request)
+\item 
+def \hyperlink{namespace_discount_1_1views_a58edd1662d569cc6f8714bf106da6a1e}{login} (request)
+\item 
+def \hyperlink{namespace_discount_1_1views_a033c4753c804f383c8fefdca2b2e0566}{logout} (request)
+\item 
+def \hyperlink{namespace_discount_1_1views_aaf1abec1101e66c5e419f25d92712b2d}{shops} (request)
+\item 
+def \hyperlink{namespace_discount_1_1views_ac9256cde9ae572d015edf90e90f4b00b}{add\+\_\+shop} (request)
+\item 
+def \hyperlink{namespace_discount_1_1views_a5a3728b3017c05f1c8ccabd832f3fdd5}{shop} (request, shop\+\_\+id)
+\item 
+def \hyperlink{namespace_discount_1_1views_a96b5b651d32cec9071708084686e3ced}{add\+\_\+stock} (request, shop\+\_\+id)
+\item 
+def \hyperlink{namespace_discount_1_1views_a0b960c314da8b607db4cff5669781c7d}{subscribe} (request, shop\+\_\+id)
+\item 
+def \hyperlink{namespace_discount_1_1views_a50ef4ece5895ac221b7a940de2f89ba1}{unsubscribe} (request, shop\+\_\+id)
+\item 
+def \hyperlink{namespace_discount_1_1views_a8e05c2613033ea5883a63ce9422bb09e}{myshops} (request)
+\item 
+def \hyperlink{namespace_discount_1_1views_abe8b7cafc25d6f2d730aa68ae948f586}{mysubscripthons} (request)
+\item 
+def \hyperlink{namespace_discount_1_1views_aaf5ab473564754017d41b391c4ccc689}{cabinet} (request)
+\item 
+def \hyperlink{namespace_discount_1_1views_a4fa12ffebe567e85364025de7b2d84be}{change\+\_\+logo} (request, shop\+\_\+id)
+\item 
+def \hyperlink{namespace_discount_1_1views_a418332f381d43cd21532275955de41d9}{change\+\_\+stock} (request, stock\+\_\+id)
+\item 
+def \hyperlink{namespace_discount_1_1views_a8528cc1b935166d465b2ef597889bcb3}{delete\+\_\+stock} (request, stock\+\_\+id)
+\item 
+def \hyperlink{namespace_discount_1_1views_ad7b37be22e6ce0661d36af8dfdca6a4a}{add\+\_\+to\+\_\+favorites} (request, stock\+\_\+id)
+\item 
+def \hyperlink{namespace_discount_1_1views_a5559ac3262f5e7c78873ffbbf044007f}{delete\+\_\+from\+\_\+favorites} (request, stock\+\_\+id)
+\item 
+def \hyperlink{namespace_discount_1_1views_a0c55e16270014f1b56d16dc55c116c3d}{myfavorites} (request)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespace_discount_1_1views_ac9256cde9ae572d015edf90e90f4b00b}\label{namespace_discount_1_1views_ac9256cde9ae572d015edf90e90f4b00b}} 
+\index{Discount\+::views@{Discount\+::views}!add\+\_\+shop@{add\+\_\+shop}}
+\index{add\+\_\+shop@{add\+\_\+shop}!Discount\+::views@{Discount\+::views}}
+\subsubsection{\texorpdfstring{add\+\_\+shop()}{add\_shop()}}
+{\footnotesize\ttfamily def Discount.\+views.\+add\+\_\+shop (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Добавление магазина
+
+Parameter
+    request.GET '/add_shop'
+    or
+    request.POST '/add_shop'
+
+Return
+    add shop page with form or add shop page with form and errors or redirect to home page or redirect to login
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_discount_1_1views_a96b5b651d32cec9071708084686e3ced}\label{namespace_discount_1_1views_a96b5b651d32cec9071708084686e3ced}} 
+\index{Discount\+::views@{Discount\+::views}!add\+\_\+stock@{add\+\_\+stock}}
+\index{add\+\_\+stock@{add\+\_\+stock}!Discount\+::views@{Discount\+::views}}
+\subsubsection{\texorpdfstring{add\+\_\+stock()}{add\_stock()}}
+{\footnotesize\ttfamily def Discount.\+views.\+add\+\_\+stock (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{shop\+\_\+id }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Добавление акции
+
+Parameters
+    request.GET '/add_stock' and int shop_id
+
+Return
+    add shop page with form
+    or
+    add shop page with form and errors
+    or
+    redirect to home page
+    or
+    redirect to login
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_discount_1_1views_ad7b37be22e6ce0661d36af8dfdca6a4a}\label{namespace_discount_1_1views_ad7b37be22e6ce0661d36af8dfdca6a4a}} 
+\index{Discount\+::views@{Discount\+::views}!add\+\_\+to\+\_\+favorites@{add\+\_\+to\+\_\+favorites}}
+\index{add\+\_\+to\+\_\+favorites@{add\+\_\+to\+\_\+favorites}!Discount\+::views@{Discount\+::views}}
+\subsubsection{\texorpdfstring{add\+\_\+to\+\_\+favorites()}{add\_to\_favorites()}}
+{\footnotesize\ttfamily def Discount.\+views.\+add\+\_\+to\+\_\+favorites (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{stock\+\_\+id }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Добавление акции в избранное
+
+Parameter
+    request.GET '/add_to_favorites'
+
+Return
+    redirect to home page
+    or
+    redirect to login
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_discount_1_1views_aaf5ab473564754017d41b391c4ccc689}\label{namespace_discount_1_1views_aaf5ab473564754017d41b391c4ccc689}} 
+\index{Discount\+::views@{Discount\+::views}!cabinet@{cabinet}}
+\index{cabinet@{cabinet}!Discount\+::views@{Discount\+::views}}
+\subsubsection{\texorpdfstring{cabinet()}{cabinet()}}
+{\footnotesize\ttfamily def Discount.\+views.\+cabinet (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Редактирование профиля пользователя
+
+Parameter
+    request.GET '/cabinet' or request.POST '/cabinet'
+
+Return
+    cabinet page with form
+    or
+    cabinet page with form and errors
+    or
+    redirect to home page
+    or
+    redirect to login
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_discount_1_1views_a4fa12ffebe567e85364025de7b2d84be}\label{namespace_discount_1_1views_a4fa12ffebe567e85364025de7b2d84be}} 
+\index{Discount\+::views@{Discount\+::views}!change\+\_\+logo@{change\+\_\+logo}}
+\index{change\+\_\+logo@{change\+\_\+logo}!Discount\+::views@{Discount\+::views}}
+\subsubsection{\texorpdfstring{change\+\_\+logo()}{change\_logo()}}
+{\footnotesize\ttfamily def Discount.\+views.\+change\+\_\+logo (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{shop\+\_\+id }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Изменеие логотипа магазина
+
+Parameter
+    request.GET '/change_logo' or request.POST '/change_logo' and int shop_id
+
+Return
+    change logo page with form
+    or
+    change logo page with form and errors
+    or
+    redirect to home page
+    or
+    redirect to login
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_discount_1_1views_a418332f381d43cd21532275955de41d9}\label{namespace_discount_1_1views_a418332f381d43cd21532275955de41d9}} 
+\index{Discount\+::views@{Discount\+::views}!change\+\_\+stock@{change\+\_\+stock}}
+\index{change\+\_\+stock@{change\+\_\+stock}!Discount\+::views@{Discount\+::views}}
+\subsubsection{\texorpdfstring{change\+\_\+stock()}{change\_stock()}}
+{\footnotesize\ttfamily def Discount.\+views.\+change\+\_\+stock (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{stock\+\_\+id }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Редактирование акции
+
+Parameter
+    request.GET '/change_stock' or request.POST '/change_stock' and int stock_id
+
+Return
+    change stock page with form
+    or
+    change stock page with form and errors
+    or
+    redirect to home page
+    or
+    redirect to login
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_discount_1_1views_a5559ac3262f5e7c78873ffbbf044007f}\label{namespace_discount_1_1views_a5559ac3262f5e7c78873ffbbf044007f}} 
+\index{Discount\+::views@{Discount\+::views}!delete\+\_\+from\+\_\+favorites@{delete\+\_\+from\+\_\+favorites}}
+\index{delete\+\_\+from\+\_\+favorites@{delete\+\_\+from\+\_\+favorites}!Discount\+::views@{Discount\+::views}}
+\subsubsection{\texorpdfstring{delete\+\_\+from\+\_\+favorites()}{delete\_from\_favorites()}}
+{\footnotesize\ttfamily def Discount.\+views.\+delete\+\_\+from\+\_\+favorites (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{stock\+\_\+id }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Удаление акции из избранного
+
+Parameter
+    request.GET '/delete_from_favorites'
+
+Return
+    redirect to home page
+    or
+    redirect to login
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_discount_1_1views_a8528cc1b935166d465b2ef597889bcb3}\label{namespace_discount_1_1views_a8528cc1b935166d465b2ef597889bcb3}} 
+\index{Discount\+::views@{Discount\+::views}!delete\+\_\+stock@{delete\+\_\+stock}}
+\index{delete\+\_\+stock@{delete\+\_\+stock}!Discount\+::views@{Discount\+::views}}
+\subsubsection{\texorpdfstring{delete\+\_\+stock()}{delete\_stock()}}
+{\footnotesize\ttfamily def Discount.\+views.\+delete\+\_\+stock (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{stock\+\_\+id }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Удаление акции
+
+Parameter
+    request.GET '/delete_stock'
+
+Return
+    redirect to current shop page
+    or
+    redirect to home page
+    or
+    redirect to login
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_discount_1_1views_ae8581c9b9d2f9447119a4512c0d6b40f}\label{namespace_discount_1_1views_ae8581c9b9d2f9447119a4512c0d6b40f}} 
+\index{Discount\+::views@{Discount\+::views}!home@{home}}
+\index{home@{home}!Discount\+::views@{Discount\+::views}}
+\subsubsection{\texorpdfstring{home()}{home()}}
+{\footnotesize\ttfamily def Discount.\+views.\+home (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Вызов стартовой страницы
+
+Parameter
+   request.GET '/'
+
+Return
+   home page with list of active stocks
+   or
+   home page with list of active stocks and list of favorite stocks
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_discount_1_1views_a58edd1662d569cc6f8714bf106da6a1e}\label{namespace_discount_1_1views_a58edd1662d569cc6f8714bf106da6a1e}} 
+\index{Discount\+::views@{Discount\+::views}!login@{login}}
+\index{login@{login}!Discount\+::views@{Discount\+::views}}
+\subsubsection{\texorpdfstring{login()}{login()}}
+{\footnotesize\ttfamily def Discount.\+views.\+login (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Авторизация пользователя
+
+Parameter
+    request.GET '/login' or request.POST '/login'
+
+Return
+    login page with form
+    or
+    login page with form and errors
+    or
+    redirect to home page
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_discount_1_1views_a033c4753c804f383c8fefdca2b2e0566}\label{namespace_discount_1_1views_a033c4753c804f383c8fefdca2b2e0566}} 
+\index{Discount\+::views@{Discount\+::views}!logout@{logout}}
+\index{logout@{logout}!Discount\+::views@{Discount\+::views}}
+\subsubsection{\texorpdfstring{logout()}{logout()}}
+{\footnotesize\ttfamily def Discount.\+views.\+logout (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Выход пользователя из аккаунта
+
+Parameter
+    request.GET '/logout'
+
+Return
+    redirect to home page
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_discount_1_1views_a0c55e16270014f1b56d16dc55c116c3d}\label{namespace_discount_1_1views_a0c55e16270014f1b56d16dc55c116c3d}} 
+\index{Discount\+::views@{Discount\+::views}!myfavorites@{myfavorites}}
+\index{myfavorites@{myfavorites}!Discount\+::views@{Discount\+::views}}
+\subsubsection{\texorpdfstring{myfavorites()}{myfavorites()}}
+{\footnotesize\ttfamily def Discount.\+views.\+myfavorites (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Получение списка избранных акций пользователя
+
+Parameter
+    request.GET '/myfavorites'
+
+Return
+    my favorites page with list of favorite stocks of user
+    or
+    redirect to home page
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_discount_1_1views_a8e05c2613033ea5883a63ce9422bb09e}\label{namespace_discount_1_1views_a8e05c2613033ea5883a63ce9422bb09e}} 
+\index{Discount\+::views@{Discount\+::views}!myshops@{myshops}}
+\index{myshops@{myshops}!Discount\+::views@{Discount\+::views}}
+\subsubsection{\texorpdfstring{myshops()}{myshops()}}
+{\footnotesize\ttfamily def Discount.\+views.\+myshops (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Получение списка магазинов, которыми владеет пользователь
+
+Parameter
+    request.GET '/myshops'
+
+Return
+    my shops page with list of user's shops
+    or
+    redirect to home page
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_discount_1_1views_abe8b7cafc25d6f2d730aa68ae948f586}\label{namespace_discount_1_1views_abe8b7cafc25d6f2d730aa68ae948f586}} 
+\index{Discount\+::views@{Discount\+::views}!mysubscripthons@{mysubscripthons}}
+\index{mysubscripthons@{mysubscripthons}!Discount\+::views@{Discount\+::views}}
+\subsubsection{\texorpdfstring{mysubscripthons()}{mysubscripthons()}}
+{\footnotesize\ttfamily def Discount.\+views.\+mysubscripthons (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Получение списка акций от магазинов, на которые подписан пользователь
+
+Parameter
+    request.GET '/mysubscripthons'
+
+Return
+    my subscripthons page with list of stocks from favorite shops of user
+    or
+    redirect to home page
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_discount_1_1views_a6fe3e41a2a7d661f576ef987dddcb1e4}\label{namespace_discount_1_1views_a6fe3e41a2a7d661f576ef987dddcb1e4}} 
+\index{Discount\+::views@{Discount\+::views}!registration\+\_\+step1@{registration\+\_\+step1}}
+\index{registration\+\_\+step1@{registration\+\_\+step1}!Discount\+::views@{Discount\+::views}}
+\subsubsection{\texorpdfstring{registration\+\_\+step1()}{registration\_step1()}}
+{\footnotesize\ttfamily def Discount.\+views.\+registration\+\_\+step1 (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Регистрация пользователя (шаг 1)
+
+Parameter
+    request.GET '/sign_up' or request.POST '/sign_up'
+
+Return
+    registration page with form
+    or
+    registration page with form and errors
+    or
+    redirect to complete registration
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_discount_1_1views_aa1fb55cf7351af98f96003a48105e5b3}\label{namespace_discount_1_1views_aa1fb55cf7351af98f96003a48105e5b3}} 
+\index{Discount\+::views@{Discount\+::views}!registration\+\_\+step2@{registration\+\_\+step2}}
+\index{registration\+\_\+step2@{registration\+\_\+step2}!Discount\+::views@{Discount\+::views}}
+\subsubsection{\texorpdfstring{registration\+\_\+step2()}{registration\_step2()}}
+{\footnotesize\ttfamily def Discount.\+views.\+registration\+\_\+step2 (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Регистрация пользователя (шаг 2)
+
+Parameter
+    request.GET '/complete_registration' or request.POST '/complete_registration'
+
+Return
+    complete registration page with form
+    or
+    complete registration page with form and errors
+    or
+    redirect to home page
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_discount_1_1views_a5a3728b3017c05f1c8ccabd832f3fdd5}\label{namespace_discount_1_1views_a5a3728b3017c05f1c8ccabd832f3fdd5}} 
+\index{Discount\+::views@{Discount\+::views}!shop@{shop}}
+\index{shop@{shop}!Discount\+::views@{Discount\+::views}}
+\subsubsection{\texorpdfstring{shop()}{shop()}}
+{\footnotesize\ttfamily def Discount.\+views.\+shop (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{shop\+\_\+id }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Просмотр акций конкретного магазина
+
+Parameters
+    request.GET '/shop' and int shop_id
+
+Return
+    shop page with Shop object (id=shop_id) and list of it's stocks
+    or
+    shop page with Shop object (id=shop_id) and list of it's stocks and list of subscriptions of user and list of favorite stocks of user
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_discount_1_1views_aaf1abec1101e66c5e419f25d92712b2d}\label{namespace_discount_1_1views_aaf1abec1101e66c5e419f25d92712b2d}} 
+\index{Discount\+::views@{Discount\+::views}!shops@{shops}}
+\index{shops@{shops}!Discount\+::views@{Discount\+::views}}
+\subsubsection{\texorpdfstring{shops()}{shops()}}
+{\footnotesize\ttfamily def Discount.\+views.\+shops (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Получение списка магазинов
+
+Parameter
+    request.GET '/shops'
+
+Return
+    shops page with the list of all shops
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_discount_1_1views_a0b960c314da8b607db4cff5669781c7d}\label{namespace_discount_1_1views_a0b960c314da8b607db4cff5669781c7d}} 
+\index{Discount\+::views@{Discount\+::views}!subscribe@{subscribe}}
+\index{subscribe@{subscribe}!Discount\+::views@{Discount\+::views}}
+\subsubsection{\texorpdfstring{subscribe()}{subscribe()}}
+{\footnotesize\ttfamily def Discount.\+views.\+subscribe (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{shop\+\_\+id }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Выполнение подписки на магазин
+
+Parameters
+    request.GET '/subscribe' and int shop_id
+
+Return
+    redirect to home page
+    or
+    redirect to login
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_discount_1_1views_a50ef4ece5895ac221b7a940de2f89ba1}\label{namespace_discount_1_1views_a50ef4ece5895ac221b7a940de2f89ba1}} 
+\index{Discount\+::views@{Discount\+::views}!unsubscribe@{unsubscribe}}
+\index{unsubscribe@{unsubscribe}!Discount\+::views@{Discount\+::views}}
+\subsubsection{\texorpdfstring{unsubscribe()}{unsubscribe()}}
+{\footnotesize\ttfamily def Discount.\+views.\+unsubscribe (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{shop\+\_\+id }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Выполение отписки от акций магазина
+
+Parameters
+    request.GET '/unsubscribe' and int shop_id
+
+Return
+    redirect to home page
+    or
+    redirect to login
+\end{DoxyVerb}
+ 

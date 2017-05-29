@@ -8,7 +8,16 @@ from Discount.models import Stock, DiscountUserForm, DiscountUser, Shop, ShopFor
 
 
 def home(request):
-    # :return html start page
+    """Вызов стартовой страницы
+
+    Parameter
+       request.GET '/'
+
+    Return
+       home page with list of active stocks
+       or
+       home page with list of active stocks and list of favorite stocks
+    """
     if auth.get_user(request).id != None:
         favorites = Favorites.objects.filter(user_id=auth.get_user(request).id)
         stocks_ids = []
@@ -20,6 +29,18 @@ def home(request):
 
 
 def registration_step1(request):
+    """Регистрация пользователя (шаг 1)
+
+    Parameter
+        request.GET '/sign_up' or request.POST '/sign_up'
+
+    Return
+        registration page with form
+        or
+        registration page with form and errors
+        or
+        redirect to complete registration
+    """
     # :return html registration with form or redirect to complete registration
     args = {}
     args.update(csrf(request))
@@ -37,7 +58,18 @@ def registration_step1(request):
 
 
 def registration_step2(request):
-    # :return redirect to start page or html complete registration with form or redirect to sign up
+    """Регистрация пользователя (шаг 2)
+
+    Parameter
+        request.GET '/complete_registration' or request.POST '/complete_registration'
+
+    Return
+        complete registration page with form
+        or
+        complete registration page with form and errors
+        or
+        redirect to home page
+    """
     if auth.get_user(request).id != None:
         args = {}
         args.update(csrf(request))
@@ -57,7 +89,18 @@ def registration_step2(request):
 
 
 def login(request):
-    # :return html login with form or redirect to start page or html login with form and error
+    """Авторизация пользователя
+
+    Parameter
+        request.GET '/login' or request.POST '/login'
+
+    Return
+        login page with form
+        or
+        login page with form and errors
+        or
+        redirect to home page
+    """
     args = {}
     args.update(csrf(request))
     if request.POST:
@@ -71,16 +114,32 @@ def login(request):
             args['login_error'] = "Пользователь не найден!"
             return render_to_response('Discount/login.html', args)
     else:
+
         return render_to_response('Discount/login.html', args)
 
+
 def logout(request):
-    # :return redirect to start page
+    """Выход пользователя из аккаунта
+
+    Parameter
+        request.GET '/logout'
+
+    Return
+        redirect to home page
+    """
     auth.logout(request)
     return redirect("/")
 
 
 def shops(request):
-    # :return html with full list of shops
+    """Получение списка магазинов
+
+    Parameter
+        request.GET '/shops'
+
+    Return
+        shops page with the list of all shops
+    """
     subscriptions = Subscription.objects.filter(user_id=auth.get_user(request).id)
     shop_ids = []
     for subscription in subscriptions:
@@ -89,7 +148,16 @@ def shops(request):
 
 
 def add_shop(request):
-    # :return html add_shop with form or redirect to start page or redirect to login
+    """Добавление магазина
+
+    Parameter
+        request.GET '/add_shop'
+        or
+        request.POST '/add_shop'
+
+    Return
+        add shop page with form or add shop page with form and errors or redirect to home page or redirect to login
+    """
     if auth.get_user(request).id != None:
         args = {}
         args.update(csrf(request))
@@ -109,7 +177,16 @@ def add_shop(request):
 
 
 def shop(request, shop_id):
-    # :param string shop_id: id of requesting shop
+    """Просмотр акций конкретного магазина
+
+    Parameters
+        request.GET '/shop' and int shop_id
+
+    Return
+        shop page with Shop object (id=shop_id) and list of it's stocks
+        or
+        shop page with Shop object (id=shop_id) and list of it's stocks and list of subscriptions of user and list of favorite stocks of user
+    """
     subscriptions = Subscription.objects.filter(user_id=auth.get_user(request).id)
     shop_ids = []
     for subscription in subscriptions:
@@ -122,6 +199,20 @@ def shop(request, shop_id):
 
 
 def add_stock(request, shop_id):
+    """Добавление акции
+
+    Parameters
+        request.GET '/add_stock' and int shop_id
+
+    Return
+        add shop page with form
+        or
+        add shop page with form and errors
+        or
+        redirect to home page
+        or
+        redirect to login
+    """
     shop = Shop.objects.get(id = shop_id)
     if auth.get_user(request).id == shop.seller_id:
         args = {}
@@ -144,6 +235,16 @@ def add_stock(request, shop_id):
 
 
 def subscribe(request, shop_id):
+    """Выполнение подписки на магазин
+
+    Parameters
+        request.GET '/subscribe' and int shop_id
+
+    Return
+        redirect to home page
+        or
+        redirect to login
+    """
     if auth.get_user(request).id != None:
         subscription = Subscription()
         subscription.user_id = auth.get_user(request).id
@@ -156,6 +257,16 @@ def subscribe(request, shop_id):
 
 
 def unsubscribe(request, shop_id):
+    """Выполение отписки от акций магазина
+
+    Parameters
+        request.GET '/unsubscribe' and int shop_id
+
+    Return
+        redirect to home page
+        or
+        redirect to login
+    """
     if auth.get_user(request).id != None:
         query = Subscription.objects.filter(user_id = auth.get_user(request).id)
         query.get(shop_id = shop_id).delete()
@@ -165,6 +276,16 @@ def unsubscribe(request, shop_id):
 
 
 def myshops(request):
+    """Получение списка магазинов, которыми владеет пользователь
+
+    Parameter
+        request.GET '/myshops'
+
+    Return
+        my shops page with list of user's shops
+        or
+        redirect to home page
+    """
     if auth.get_user(request).id != None:
         user = auth.get_user(request)
         status = user.discountuser.status
@@ -177,6 +298,16 @@ def myshops(request):
 
 
 def mysubscripthons(request):
+    """Получение списка акций от магазинов, на которые подписан пользователь
+
+    Parameter
+        request.GET '/mysubscripthons'
+
+    Return
+        my subscripthons page with list of stocks from favorite shops of user
+        or
+        redirect to home page
+    """
     if auth.get_user(request).id != None:
         subscriptions = Subscription.objects.filter(user_id=auth.get_user(request).id)
         buffer = []
@@ -196,6 +327,20 @@ def mysubscripthons(request):
 
 
 def cabinet(request):
+    """Редактирование профиля пользователя
+
+    Parameter
+        request.GET '/cabinet' or request.POST '/cabinet'
+
+    Return
+        cabinet page with form
+        or
+        cabinet page with form and errors
+        or
+        redirect to home page
+        or
+        redirect to login
+    """
     if auth.get_user(request).id != None:
         user = DiscountUser.objects.get(user = auth.get_user(request))
         args = {}
@@ -222,6 +367,20 @@ def cabinet(request):
 
 
 def change_logo(request, shop_id):
+    """Изменеие логотипа магазина
+
+    Parameter
+        request.GET '/change_logo' or request.POST '/change_logo' and int shop_id
+
+    Return
+        change logo page with form
+        or
+        change logo page with form and errors
+        or
+        redirect to home page
+        or
+        redirect to login
+    """
     if auth.get_user(request).id != None:
         shop = Shop.objects.get(id=shop_id)
         if auth.get_user(request).id == shop.seller_id:
@@ -246,6 +405,20 @@ def change_logo(request, shop_id):
 
 
 def change_stock(request, stock_id):
+    """Редактирование акции
+
+    Parameter
+        request.GET '/change_stock' or request.POST '/change_stock' and int stock_id
+
+    Return
+        change stock page with form
+        or
+        change stock page with form and errors
+        or
+        redirect to home page
+        or
+        redirect to login
+    """
     if auth.get_user(request).id != None:
         stock = Stock.objects.get(id=stock_id)
         shop = Shop.objects.get(id = stock.shop_id)
@@ -274,6 +447,18 @@ def change_stock(request, stock_id):
 
 
 def delete_stock(request, stock_id):
+    """Удаление акции
+
+    Parameter
+        request.GET '/delete_stock'
+
+    Return
+        redirect to current shop page
+        or
+        redirect to home page
+        or
+        redirect to login
+    """
     if auth.get_user(request).id != None:
         stock = Stock.objects.get(id=stock_id)
         shop = Shop.objects.get(id = stock.shop_id)
@@ -288,6 +473,16 @@ def delete_stock(request, stock_id):
 
 
 def add_to_favorites(request, stock_id):
+    """Добавление акции в избранное
+
+    Parameter
+        request.GET '/add_to_favorites'
+
+    Return
+        redirect to home page
+        or
+        redirect to login
+    """
     if auth.get_user(request).id != None:
         favourite = Favorites()
         favourite.user_id = auth.get_user(request).id
@@ -299,6 +494,16 @@ def add_to_favorites(request, stock_id):
 
 
 def delete_from_favorites(request, stock_id):
+    """Удаление акции из избранного
+
+    Parameter
+        request.GET '/delete_from_favorites'
+
+    Return
+        redirect to home page
+        or
+        redirect to login
+    """
     if auth.get_user(request).id != None:
         query = Favorites.objects.filter(user_id=auth.get_user(request).id)
         query.get(stock_id=stock_id).delete()
@@ -308,6 +513,16 @@ def delete_from_favorites(request, stock_id):
 
 
 def myfavorites(request):
+    """Получение списка избранных акций пользователя
+
+    Parameter
+        request.GET '/myfavorites'
+
+    Return
+        my favorites page with list of favorite stocks of user
+        or
+        redirect to home page
+    """
     if auth.get_user(request).id != None:
         favorites = Favorites.objects.filter(user_id=auth.get_user(request).id)
         buffer = []

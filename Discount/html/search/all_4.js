@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['admin',['admin',['../namespace_discount_1_1admin.html',1,'Discount']]],
+  ['apps',['apps',['../namespace_discount_1_1apps.html',1,'Discount']]],
+  ['date',['date',['../class_discount_1_1models_1_1_stock.html#a45766d05ae4d7cd8e2618e40b99df3b5',1,'Discount::models::Stock']]],
+  ['db_5ftable',['db_table',['../class_discount_1_1models_1_1_discount_user_1_1_meta.html#a2dc2167d3b5153012d36145bfa05bd30',1,'Discount.models.DiscountUser.Meta.db_table()'],['../class_discount_1_1models_1_1_shop_1_1_meta.html#af5ab99e414e46fd3247c0db3ecaf9bb5',1,'Discount.models.Shop.Meta.db_table()'],['../class_discount_1_1models_1_1_stock_1_1_meta.html#ab26387dac75bd8eb0ed36320d1c2a246',1,'Discount.models.Stock.Meta.db_table()'],['../class_discount_1_1models_1_1_subscription_1_1_meta.html#a54388d3cc73c2f51e99d79dcc55fbe96',1,'Discount.models.Subscription.Meta.db_table()'],['../class_discount_1_1models_1_1_favorites_1_1_meta.html#a627d292bf9009cf675aa191d33ae41c9',1,'Discount.models.Favorites.Meta.db_table()']]],
+  ['delete_5ffrom_5ffavorites',['delete_from_favorites',['../namespace_discount_1_1views.html#a5559ac3262f5e7c78873ffbbf044007f',1,'Discount::views']]],
+  ['delete_5fstock',['delete_stock',['../namespace_discount_1_1views.html#a8528cc1b935166d465b2ef597889bcb3',1,'Discount::views']]],
+  ['description',['description',['../class_discount_1_1models_1_1_stock.html#ab1fc46693f921b3b492984ba92f28def',1,'Discount::models::Stock']]],
+  ['discount',['Discount',['../namespace_discount.html',1,'']]],
+  ['discountconfig',['DiscountConfig',['../class_discount_1_1apps_1_1_discount_config.html',1,'Discount::apps']]],
+  ['discountuser',['DiscountUser',['../class_discount_1_1models_1_1_discount_user.html',1,'Discount::models']]],
+  ['discountuserform',['DiscountUserForm',['../class_discount_1_1models_1_1_discount_user_form.html',1,'Discount::models']]],
+  ['discountuserform2',['DiscountUserForm2',['../class_discount_1_1models_1_1_discount_user_form2.html',1,'Discount::models']]],
+  ['models',['models',['../namespace_discount_1_1models.html',1,'Discount']]],
+  ['tests',['tests',['../namespace_discount_1_1tests.html',1,'Discount']]],
+  ['urls',['urls',['../namespace_discount_1_1urls.html',1,'Discount']]],
+  ['views',['views',['../namespace_discount_1_1views.html',1,'Discount']]]
+];

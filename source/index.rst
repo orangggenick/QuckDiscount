@@ -10,6 +10,8 @@ Welcome to QuickDiscount's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   chapter01
+
 
 
 Indices and tables
